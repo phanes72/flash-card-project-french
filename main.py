@@ -14,9 +14,15 @@ window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 
 def next_card():
+    canvas.config(bg="white", highlightthickness=0)
+
+    # card_title = canvas.create_text(400, 150, text="", font=("Ariel", 40, "italic"), fill="black")
+    # card_word = canvas.create_text(400, 263, text="", font=("Ariel", 60, "bold"), fill="black")
+    canvas.itemconfig(card_word, text="")
+
     current_card = random.choice(to_learn)
-    canvas.itemconfig(card_title, text="French")
-    canvas.itemconfig(card_word, text=current_card["French"])
+    canvas.itemconfig(card_title, text="French", fill="black")
+    canvas.itemconfig(card_word, text=current_card["French"], fill="black")
 
 
 canvas = Canvas(width=800, height=526)
@@ -34,6 +40,6 @@ check_image = PhotoImage(file="images/right.png")
 known_button = Button(image=check_image, highlightthickness=0, command=next_card)
 known_button.grid(row=1, column=1)
 
-next_card()
+#next_card()
 
 window.mainloop()
