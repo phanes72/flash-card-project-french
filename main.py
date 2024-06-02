@@ -15,10 +15,12 @@ current_card = random.choice(to_learn)
 
 
 def next_card():
+    canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)
     global current_card
     current_card = random.choice(to_learn)
-    canvas.itemconfig(card_title, text="French")
+    canvas.itemconfig(card_title, text="French", fill="white")
     canvas.itemconfig(card_word, text=current_card["French"], fill="white")
+    window.after(3000, flip_card)
 
 
 def flip_card():
@@ -37,14 +39,14 @@ canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)
 canvas.grid(row=0, column=0, columnspan=2)
 
 cross_image = PhotoImage(file="images/wrong.png")
-unknown_button = Button(image=cross_image, highlightthickness=0)
+unknown_button = Button(image=cross_image, highlightthickness=0, command=next_card)
 unknown_button.grid(row=1, column=0)
 
 check_image = PhotoImage(file="images/right.png")
-known_button = Button(image=check_image, highlightthickness=0)
+known_button = Button(image=check_image, highlightthickness=0, command=next_card)
 known_button.grid(row=1, column=1)
 
-next_card()
+
 window.after(3000, flip_card)
 
 window.mainloop()
