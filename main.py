@@ -16,8 +16,6 @@ window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 def next_card():
     canvas.config(bg="white", highlightthickness=0)
 
-    # card_title = canvas.create_text(400, 150, text="", font=("Ariel", 40, "italic"), fill="black")
-    # card_word = canvas.create_text(400, 263, text="", font=("Ariel", 60, "bold"), fill="black")
     canvas.itemconfig(card_word, text="")
 
     current_card = random.choice(to_learn)
