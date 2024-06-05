@@ -1,6 +1,7 @@
 from tkinter import *
 import pandas as pd
 import random
+import csv
 
 data = pd.read_csv("data/french_words.csv")
 to_learn = data.to_dict(orient="records")
@@ -12,6 +13,15 @@ window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 current_card = {}
 current_card = random.choice(to_learn)
+
+
+# https://stackoverflow.com/questions/75966783/pycharm-error-expected-type-class-name-got-str-instead
+def update_learn_list():
+    csv_file_path = "words_to_learn.csv"
+
+    with open(csv_file_path, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(data)
 
 
 def next_card():
@@ -31,6 +41,8 @@ def flip_card():
     canvas.itemconfig(card_title, text="English", fill="black")
     canvas.itemconfig(card_word, text=current_card["English"], fill="black")
 
+    update_learn_list()
+
 
 canvas = Canvas(width=800, height=526)
 card_front_img = PhotoImage(file="images/card_front.png")
@@ -46,7 +58,6 @@ unknown_button.grid(row=1, column=0)
 check_image = PhotoImage(file="images/right.png")
 known_button = Button(image=check_image, highlightthickness=0, command=next_card)
 known_button.grid(row=1, column=1)
-
 
 flip_timer = window.after(3000, flip_card)
 
