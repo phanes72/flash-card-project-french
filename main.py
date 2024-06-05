@@ -1,7 +1,7 @@
 from tkinter import *
 import pandas as pd
 import random
-import csv
+
 
 data = pd.read_csv("data/french_words.csv")
 to_learn = data.to_dict(orient="records")
@@ -18,10 +18,8 @@ current_card = random.choice(to_learn)
 # https://stackoverflow.com/questions/75966783/pycharm-error-expected-type-class-name-got-str-instead
 def update_learn_list():
     csv_file_path = "words_to_learn.csv"
+    data.to_csv(csv_file_path, index=False)
 
-    with open(csv_file_path, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(data)
 
 
 def next_card():
