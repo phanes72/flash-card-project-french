@@ -2,7 +2,6 @@ from tkinter import *
 import pandas as pd
 import random
 
-
 data = pd.read_csv("data/french_words.csv")
 to_learn = data.to_dict(orient="records")
 BACKGROUND_COLOR = "#B1DDC6"
@@ -11,15 +10,20 @@ window = Tk()
 window.title("Flashy")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
-current_card = {}
+to_learn_card = {}
 current_card = random.choice(to_learn)
 
 
 # https://stackoverflow.com/questions/75966783/pycharm-error-expected-type-class-name-got-str-instead
 def update_learn_list():
-    csv_file_path = "words_to_learn.csv"
-    data.to_csv(csv_file_path, index=False)
+    csv_file_path = "data/words_to_learn.csv"
+    # data.to_csv(csv_file_path, index=False)
 
+    to_learn.remove(current_card)
+    df = pd.DataFrame(to_learn)
+    df.to_csv(csv_file_path, index=False)
+
+    print(current_card["French"] + " " + current_card["English"])
 
 
 def next_card():
