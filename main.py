@@ -17,7 +17,6 @@ current_card = random.choice(to_learn)
 # https://stackoverflow.com/questions/75966783/pycharm-error-expected-type-class-name-got-str-instead
 def update_learn_list():
     csv_file_path = "data/words_to_learn.csv"
-    # data.to_csv(csv_file_path, index=False)
 
     to_learn.remove(current_card)
     df = pd.DataFrame(to_learn)
