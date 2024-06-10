@@ -21,7 +21,7 @@ def update_learn_list():
 
     to_learn.remove(current_card)
     df = pd.DataFrame(to_learn)
-    df.to_csv(csv_file_path, index=False)
+    df.to_csv(csv_file_path, index=False, mode='w+')
 
     print(current_card["French"] + " " + current_card["English"])
 
